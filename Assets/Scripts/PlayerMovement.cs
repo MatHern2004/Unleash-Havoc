@@ -1,5 +1,8 @@
-using UnityEngine; /// Unity library for its functions
- 
+using UnityEngine;
+using UnityEngine.Scripting.APIUpdating;
+
+/// Unity library for its functions
+
 public class PlayerMovement : MonoBehaviour
 {
     // Create variable for RigidBody2D
@@ -24,11 +27,18 @@ public class PlayerMovement : MonoBehaviour
         body.linearVelocity = new Vector2(Input.GetAxis("Horizontal") * speed, body.linearVelocity.y);
 
         // Jumping (Up) 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            // Modify linear velocity as we mantain the x velocity, but increase the y velocity by 10.
+            // Modify linear velocity as we mantain the x velocity, but increase the y velocity by 10
             // This creates jumping
-            body.linearVelocity = new Vector2(body.linearVelocity.x, speed/2);
+            body.linearVelocity = new Vector2(body.linearVelocity.x, speed);
+        }
+
+        // Fast falling (down)
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            // Keep the x velocity the same, but decrease time in the air if we hold s
+            body.linearVelocity = new Vector2(body.linearVelocity.x, -speed);
         }
     }
     
