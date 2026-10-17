@@ -17,9 +17,19 @@ public class PlayerMovement : MonoBehaviour
     // Updates per frame of the game
     private void Update()
     {
+
+        // Left and Right Movement (Running)
         // Input.GetAxis("Horizontal") shifts the distance -1 and 1. This shifts based on the A or D / left or right key
         // Then we set the body.linearVelocity of Y to 0 because we don't want it to move as we move 
         body.linearVelocity = new Vector2(Input.GetAxis("Horizontal") * speed, body.linearVelocity.y);
+
+        // Jumping (Up)
+        if (Input.GetKey(KeyCode.Space))
+        {
+            // Modify linear velocity as we mantain the x velocity, but increase the y velocity by 10.
+            // This creates jumping
+            body.linearVelocity = new Vector2(body.linearVelocity.x, speed);
+        }
     }
     
 }
