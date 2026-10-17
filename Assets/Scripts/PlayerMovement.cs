@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
         {
             // Modify linear velocity as we mantain the x velocity, but increase the y velocity by 10.
             // This creates jumping
-            body.linearVelocity = new Vector2(body.linearVelocity.x, speed);
+            body.linearVelocity = new Vector2(body.linearVelocity.x, speed/2);
         }
     }
     
