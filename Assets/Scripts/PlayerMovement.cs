@@ -23,8 +23,8 @@ public class PlayerMovement : MonoBehaviour
         // Then we set the body.linearVelocity of Y to 0 because we don't want it to move as we move 
         body.linearVelocity = new Vector2(Input.GetAxis("Horizontal") * speed, body.linearVelocity.y);
 
-        // Jumping (Up)
-        if (Input.GetKey(KeyCode.Space))
+        // Jumping (Up) 
+        if (Input.GetKey(KeyCode.W))
         {
             // Modify linear velocity as we mantain the x velocity, but increase the y velocity by 10.
             // This creates jumping
