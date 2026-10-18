@@ -1,7 +1,5 @@
-using UnityEngine;
-using UnityEngine.Scripting.APIUpdating;
-
-/// Unity library for its functions
+using UnityEngine; /// Unity library for its functions
+using UnityEngine.Scripting.APIUpdating; // May Need to Delete Later
 
 public class PlayerMovement : MonoBehaviour
 {
