@@ -15,6 +15,18 @@ public class PlayerMovement : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
     }
 
+    // Grab the ball
+    private void Grab()
+    {
+        
+    }
+
+    // Throw the ball
+    private void Throw()
+    {
+        
+    }
+
     // Updates per frame of the game
     private void Update()
     {
