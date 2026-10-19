@@ -5,6 +5,10 @@ public class PlayerMovement : MonoBehaviour
 {
     // Create variable for RigidBody2D
     private Rigidbody2D body;
+    // To obtain the direction the player is traveling
+    private float inputHorizontal;
+    // Boolean to check direction
+    private bool facingRight;
     // Player Speed (Serialized to Edit Within Unity)
     [SerializeField] private float speed = 10f;
 
@@ -13,12 +17,6 @@ public class PlayerMovement : MonoBehaviour
     {
         // Obtain the component information within the Rigidbody2D object
         body = GetComponent<Rigidbody2D>();
-    }
-
-    // Throw the ball
-    private void Throw()
-    {
-        
     }
 
     // Updates per frame of the game
@@ -44,6 +42,32 @@ public class PlayerMovement : MonoBehaviour
             // Keep the x velocity the same, but decrease time in the air if we hold s
             body.linearVelocity = new Vector2(body.linearVelocity.x, -speed);
         }
+    }
+
+    // For flipping the player
+    private void FixedUpdate()
+    {
+        // Obtain the direction of the player
+        inputHorizontal = Input.GetAxisRaw("Horizontal");
+        // If I am not facing the right and moving right, then flip the player
+        if (inputHorizontal > 0 && facingRight)
+            Flip();
+        // IF I am facing the left and am facing hte right, then flip the player
+        if (inputHorizontal < 0 && !facingRight)
+            Flip();
+    }
+
+    // Function to assist with flipping the player sprite
+    private void Flip()
+    {
+        // Obtain the current scale for the user
+        Vector3 currentScale = gameObject.transform.localScale;
+        // Flip directions for the player
+        currentScale.x *= -1;
+        // Update the currentScale
+        gameObject.transform.localScale = currentScale;
+        // Flip the character boolean with every call
+        facingRight = !facingRight;
     }
     
 }
