@@ -11,11 +11,18 @@ public class GrabObjects : MonoBehaviour
 
     // Amount of force need for the throw
     [SerializeField] private float throwForce = 10f;
-    
-    private float facing;
 
     // Field with Modifiable Values for the ray distance
     [SerializeField] private float rayDistance;
+
+    // For updating the direction the player is facing for updating the grabbed object
+    private float facing;
+    
+    // What we use to assist with mouse aiming
+    private Camera mainCamera;
+
+    // Obtain mouse position
+    private Vector3 mousePos;
 
     // Initialize grab object
     private GameObject grabbedObject;
@@ -26,16 +33,19 @@ public class GrabObjects : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // Obtain the layerIndex that is needed to grab the game object in front of the player
         layerIndex = LayerMask.NameToLayer("Objects");
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Used to determine the direction the player is facing for the parent object and its children
+        facing = Mathf.Sign(transform.localScale.x);
+        // Create the direction vector for it
+        Vector2 direction = new Vector2(facing, 0f);
         // Create Raycast object to grab what is nearby the player
         // Checks for the ray's position, places it to the right, and its distance from the player
-        facing = Mathf.Sign(transform.localScale.x);
-        Vector2 direction = new Vector2(facing, 0f);
         RaycastHit2D hitInfo = Physics2D.Raycast(rayPoint.position, direction, rayDistance);
 
         // If the there is a collider being met and the specific object being collided is in the objects layer
@@ -44,7 +54,6 @@ public class GrabObjects : MonoBehaviour
             // Grab object
             if (Input.GetKeyDown(KeyCode.E) && grabbedObject == null)
             {
-                Debug.Log("I am pressing E with an object near me!");
                 // Set the object found in our collider and set to as our currently grabbed object
                 grabbedObject = hitInfo.collider.gameObject;
                 // Set the object to kinematic so it isn't affected by gravity anymore
