@@ -1,4 +1,5 @@
 using Unity.VisualScripting;
+using System.Collections.Generic;
 using UnityEngine; // For using Unity methods
 
 public class GrabObjects : MonoBehaviour
@@ -17,12 +18,6 @@ public class GrabObjects : MonoBehaviour
 
     // For updating the direction the player is facing for updating the grabbed object
     private float facing;
-    
-    // What we use to assist with mouse aiming
-    private Camera mainCamera;
-
-    // Obtain mouse position
-    private Vector3 mousePos;
 
     // Initialize grab object
     private GameObject grabbedObject;
@@ -78,6 +73,9 @@ public class GrabObjects : MonoBehaviour
 
         // View the ray in the scene window when playing
         Debug.DrawRay(rayPoint.position, direction * rayDistance, Color.red);
+        // Update box location as it moves
+        if (grabbedObject != null)
+            grabbedObject.transform.position = grabPoint.position;
 
         // Throw the object
         if (Input.GetMouseButton(0) && grabbedObject != null)
