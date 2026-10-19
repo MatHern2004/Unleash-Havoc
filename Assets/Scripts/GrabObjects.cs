@@ -29,14 +29,15 @@ public class GrabObjects : MonoBehaviour
     {
         // Create Raycast object to grab what is nearby the player
         // Checks for the ray's position, places it to the right, and its distance from the player
-         RaycastHit2D hitInfo = Physics2D.Raycast(rayPoint.position, transform.right, rayDistance);
+        RaycastHit2D hitInfo = Physics2D.Raycast(rayPoint.position, transform.right, rayDistance);
 
         // If the there is a collider being met and the specific object being collided is in the objects layer
-         if (hitInfo.collider != null && hitInfo.collider.gameObject.layer == layerIndex)
-        {
+        if (hitInfo.collider != null && hitInfo.collider.gameObject.layer == layerIndex)
+        {  
             // Grab object
-            if (Input.GetKeyDown(KeyCode.E) && grabbedObject != null)
+            if (Input.GetKeyDown(KeyCode.E) && grabbedObject == null)
             {
+                Debug.Log("I am pressing E with an object near me!");
                 // Set the object found in our collider and set to as our currently grabbed object
                 grabbedObject = hitInfo.collider.gameObject;
                 // Set the object to kinematic so it isn't affected by gravity anymore
@@ -46,11 +47,14 @@ public class GrabObjects : MonoBehaviour
                 // Set player as the parent object
                 grabbedObject.transform.SetParent(transform);
             }
-
-            // To drop the object
+            // Throw the object
             else if (Input.GetKeyDown(KeyCode.E))
             {
                 
+            }
+            // To drop the object
+            else if (Input.GetKeyDown(KeyCode.W))
+            {
                 // Reverse the object to begin experiencing gravity
                 grabbedObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
                 // Set the parent to null and not the player
