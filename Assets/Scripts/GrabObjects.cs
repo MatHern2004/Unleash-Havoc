@@ -9,6 +9,8 @@ public class GrabObjects : MonoBehaviour
     // Field with Modifiable Values in GUI for the ray location
     [SerializeField] private Transform rayPoint;
 
+    [SerializeField] private float throwForce = 10f;
+
     // Field with Modifiable Values for the ray distance
     [SerializeField] private float rayDistance;
 
@@ -47,13 +49,9 @@ public class GrabObjects : MonoBehaviour
                 // Set player as the parent object
                 grabbedObject.transform.SetParent(transform);
             }
-            // Throw the object
-            else if (Input.GetKeyDown(KeyCode.E))
-            {
-                
-            }
+            
             // To drop the object
-            else if (Input.GetKeyDown(KeyCode.W))
+            else if (Input.GetKeyDown(KeyCode.E))
             {
                 // Reverse the object to begin experiencing gravity
                 grabbedObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
@@ -66,5 +64,18 @@ public class GrabObjects : MonoBehaviour
 
         // View the ray in the scene window when playing
         Debug.DrawRay(rayPoint.position, transform.right * rayDistance, Color.red);
+
+        // Throw the object
+        if (Input.GetMouseButton(0) && grabbedObject != null)
+            {
+                // Reverse the object to begin experiencing gravity
+                grabbedObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+                // Make sure the physics is being simulated properly
+                grabbedObject.GetComponent<Rigidbody2D>().simulated = true;
+                // Apply an immediate force to the object
+                grabbedObject.GetComponent<Rigidbody2D>().AddForce(transform.right * throwForce, ForceMode2D.Impulse);
+                // grabbedObject is reset because it was thrown
+                grabbedObject = null;
+            }
     }
 }
