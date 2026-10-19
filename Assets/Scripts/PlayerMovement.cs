@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     // To obtain the direction the player is traveling
     private float inputHorizontal;
     // Boolean to check direction
-    private bool facingRight;
+    private bool facingRight = true;
     // Player Speed (Serialized to Edit Within Unity)
     [SerializeField] private float speed = 10f;
 
@@ -50,10 +50,10 @@ public class PlayerMovement : MonoBehaviour
         // Obtain the direction of the player
         inputHorizontal = Input.GetAxisRaw("Horizontal");
         // If I am not facing the right and moving right, then flip the player
-        if (inputHorizontal > 0 && facingRight)
+        if (inputHorizontal > 0 && !facingRight)
             Flip();
         // IF I am facing the left and am facing hte right, then flip the player
-        if (inputHorizontal < 0 && !facingRight)
+        if (inputHorizontal < 0 && facingRight)
             Flip();
     }
 

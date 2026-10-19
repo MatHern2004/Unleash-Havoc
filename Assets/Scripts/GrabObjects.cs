@@ -9,7 +9,10 @@ public class GrabObjects : MonoBehaviour
     // Field with Modifiable Values in GUI for the ray location
     [SerializeField] private Transform rayPoint;
 
+    // Amount of force need for the throw
     [SerializeField] private float throwForce = 10f;
+    
+    private float facing;
 
     // Field with Modifiable Values for the ray distance
     [SerializeField] private float rayDistance;
@@ -31,7 +34,9 @@ public class GrabObjects : MonoBehaviour
     {
         // Create Raycast object to grab what is nearby the player
         // Checks for the ray's position, places it to the right, and its distance from the player
-        RaycastHit2D hitInfo = Physics2D.Raycast(rayPoint.position, transform.right, rayDistance);
+        facing = Mathf.Sign(transform.localScale.x);
+        Vector2 direction = new Vector2(facing, 0f);
+        RaycastHit2D hitInfo = Physics2D.Raycast(rayPoint.position, direction, rayDistance);
 
         // If the there is a collider being met and the specific object being collided is in the objects layer
         if (hitInfo.collider != null && hitInfo.collider.gameObject.layer == layerIndex)
@@ -55,7 +60,7 @@ public class GrabObjects : MonoBehaviour
             {
                 // Reverse the object to begin experiencing gravity
                 grabbedObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-                // Set the parent to null and not the player
+                // Set the parent to null 
                 grabbedObject.transform.SetParent(null);
                 // Reset the grabbedObject variable to null to leave us empty handed
                 grabbedObject = null;
@@ -63,7 +68,7 @@ public class GrabObjects : MonoBehaviour
         }
 
         // View the ray in the scene window when playing
-        Debug.DrawRay(rayPoint.position, transform.right * rayDistance, Color.red);
+        Debug.DrawRay(rayPoint.position, direction * rayDistance, Color.red);
 
         // Throw the object
         if (Input.GetMouseButton(0) && grabbedObject != null)
@@ -73,7 +78,9 @@ public class GrabObjects : MonoBehaviour
                 // Make sure the physics is being simulated properly
                 grabbedObject.GetComponent<Rigidbody2D>().simulated = true;
                 // Apply an immediate force to the object
-                grabbedObject.GetComponent<Rigidbody2D>().AddForce(transform.right * throwForce, ForceMode2D.Impulse);
+                grabbedObject.GetComponent<Rigidbody2D>().AddForce(direction * throwForce, ForceMode2D.Impulse);
+                // Set parent to null 
+                grabbedObject.transform.SetParent(null); 
                 // grabbedObject is reset because it was thrown
                 grabbedObject = null;
             }
