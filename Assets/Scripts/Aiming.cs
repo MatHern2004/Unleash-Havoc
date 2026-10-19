@@ -9,6 +9,9 @@ public class Aiming : MonoBehaviour
     // Obtain mouse position
     private Vector3 mousePos;
 
+    // Create a public version of the pivotAngle for the grabObjects to use
+    public float pivotAngle { get; private set; }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,6 +30,8 @@ public class Aiming : MonoBehaviour
         float rotateZ = Mathf.Atan2(toMouse.y, Mathf.Abs(toMouse.x)) * Mathf.Rad2Deg;
         // Rotate to only make it so they can move within a range of 116 degrees
         rotateZ = Mathf.Clamp(rotateZ, -75f, 75f);
+        // Set the aimAngle for throwing in grabbedObjects
+        pivotAngle = rotateZ;
         // Rotate using Quaternion with local rotation to let the parent do the flipping for us
         transform.localRotation = Quaternion.Euler(0, 0, rotateZ);
     }

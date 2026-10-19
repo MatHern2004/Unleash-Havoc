@@ -16,6 +16,9 @@ public class GrabObjects : MonoBehaviour
     // Field with Modifiable Values for the ray distance
     [SerializeField] private float rayDistance;
 
+    // Initialize the pivotPoint;
+    [SerializeField] private Aiming pivotPoint;
+
     // For updating the direction the player is facing for updating the grabbed object
     private float facing;
 
@@ -76,7 +79,7 @@ public class GrabObjects : MonoBehaviour
         // Update box location as it moves
         if (grabbedObject != null)
             grabbedObject.transform.position = grabPoint.position;
-
+        
         // Throw the object
         if (Input.GetMouseButton(0) && grabbedObject != null)
             {
@@ -85,6 +88,7 @@ public class GrabObjects : MonoBehaviour
                 // Make sure the physics is being simulated properly
                 grabbedObject.GetComponent<Rigidbody2D>().simulated = true;
                 // Apply an immediate force to the object
+                direction.y = pivotPoint.pivotAngle;
                 grabbedObject.GetComponent<Rigidbody2D>().AddForce(direction * throwForce, ForceMode2D.Impulse);
                 // Set parent to null 
                 grabbedObject.transform.SetParent(null); 

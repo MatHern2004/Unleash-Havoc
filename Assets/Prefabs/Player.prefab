@@ -200,6 +200,7 @@ MonoBehaviour:
   rayPoint: {fileID: 4095170319651657372}
   throwForce: 10
   rayDistance: 3
+  pivotPoint: {fileID: 3383699783097757409}
 --- !u!1 &3140819746812630222
 GameObject:
   m_ObjectHideFlags: 0
