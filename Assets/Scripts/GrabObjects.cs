@@ -40,8 +40,11 @@ public class GrabObjects : MonoBehaviour
     {
         // Used to determine the direction the player is facing for the parent object and its children
         facing = Mathf.Sign(transform.localScale.x);
+        // Change the throwing angle
+        float throwAngle = pivotPoint.pivotAngle * Mathf.Deg2Rad;
         // Create the direction vector for it
-        Vector2 direction = new Vector2(facing, 0f);
+        // Use the sin and cosine to properly direct the object in flight 
+        Vector2 direction = new Vector2(Mathf.Cos(throwAngle) * facing, Mathf.Sin(throwAngle));
         // Create Raycast object to grab what is nearby the player
         // Checks for the ray's position, places it to the right, and its distance from the player
         RaycastHit2D hitInfo = Physics2D.Raycast(rayPoint.position, direction, rayDistance);
@@ -88,7 +91,6 @@ public class GrabObjects : MonoBehaviour
                 // Make sure the physics is being simulated properly
                 grabbedObject.GetComponent<Rigidbody2D>().simulated = true;
                 // Apply an immediate force to the object
-                direction.y = pivotPoint.pivotAngle;
                 grabbedObject.GetComponent<Rigidbody2D>().AddForce(direction * throwForce, ForceMode2D.Impulse);
                 // Set parent to null 
                 grabbedObject.transform.SetParent(null); 
