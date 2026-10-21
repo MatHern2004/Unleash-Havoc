@@ -1,3 +1,4 @@
+using System;
 using UnityEngine; // For using Unity functions
 
 public class EnemyMovement : MonoBehaviour
@@ -8,6 +9,10 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private Transform leftSide;
     // For modifying enemy speed
     [SerializeField] private float speed = 10f;
+    // For updating player health
+    [SerializeField] private PlayerHealth health;
+    // Tag to determine the enemyType used for damage scaling
+    public String enemyType { get; private set; }
     // Document which direction the enemy is facing
     private float facing = 1;  
     // Bool to stop updating of the body.linearVelocity
@@ -17,11 +22,19 @@ public class EnemyMovement : MonoBehaviour
     // Create variable for RigidBody2D
     private Rigidbody2D body;
 
+
     // Function used to initiate enemy component
     private void Awake()
     {
         // To update the enemy's location
         body = GetComponent<Rigidbody2D>();
+    }
+
+    // Function to get the tag of the current enemy
+    private void Start()
+    {
+        // Grab the enemy type tag to differntiate damage taken for each enemy
+        enemyType = gameObject.tag;
     }
 
     // Update is called once per frame
@@ -55,6 +68,13 @@ public class EnemyMovement : MonoBehaviour
             // Destroy the enemy!
             Destroy(gameObject, 0.4f);
             // Add sound effects possibly smoke particles
+        }
+
+        // If the enemy collides with a player, have a life bars
+        if (collidedWith.CompareTag("Player"))
+        {
+            // Take damage from the basic enemy
+            health.TakeDamage(enemyType);
         }
     }
 }
