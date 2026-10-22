@@ -2,7 +2,6 @@ using UnityEngine; // For unity scripts
 
 public class Aiming : MonoBehaviour
 {
-
     // What we use to assist with mouse aiming
     private Camera mainCamera;
 

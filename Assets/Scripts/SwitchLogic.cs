@@ -24,11 +24,6 @@ public class ScriptLogic : MonoBehaviour
         colorChange = switchChange.GetComponent<SpriteRenderer>();
         gateOpen = gate.GetComponent<Rigidbody2D>();
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void FixedUpdate()
