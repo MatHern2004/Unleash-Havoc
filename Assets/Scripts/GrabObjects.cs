@@ -68,6 +68,7 @@ public class GrabObjects : MonoBehaviour
             // To drop the object
             else if (Input.GetKeyDown(KeyCode.E))
             {
+                Debug.Log("Dropping Object!");
                 // Reverse the object to begin experiencing gravity
                 grabbedObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
                 // Set the parent to null 

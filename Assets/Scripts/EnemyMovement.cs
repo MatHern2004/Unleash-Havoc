@@ -18,7 +18,7 @@ public class EnemyMovement : MonoBehaviour
     // Bool to stop updating of the body.linearVelocity
     bool isHit = false;
     // Minimum speed required for a hit
-    [SerializeField] private float minHitSpeed = 3;
+    [SerializeField] private float minHitSpeed;
     // Create variable for RigidBody2D
     private Rigidbody2D body;
 
@@ -47,9 +47,9 @@ public class EnemyMovement : MonoBehaviour
             // If we reach to the right, then change the direction
             if (body.position.x > rightSide.GetComponent<Transform>().position.x)
                 facing = -1;
-                // If we reach the left side, then change the direction
-                else if (body.position.x < leftSide.GetComponent<Transform>().position.x)
-                    facing = 1;
+            // If we reach the left side, then change the direction
+            else if (body.position.x < leftSide.GetComponent<Transform>().position.x)
+                facing = 1;
         }
     
     }
@@ -58,8 +58,9 @@ public class EnemyMovement : MonoBehaviour
     {
         // Find out what object hit the player
         GameObject collidedWith = collision.gameObject;
-        // If it was a basic box and the velocity of the collison was greater than 3
-        if (collidedWith.CompareTag("Box") && collision.relativeVelocity.magnitude > minHitSpeed)
+        // If it was a basic box and the velocity of the collison was greater than the minimum speed
+        float objectSpeed = collision.rigidbody.linearVelocity.magnitude;
+        if (collidedWith.CompareTag("Box") && objectSpeed > minHitSpeed)
         {
             // Set isHit to true to stop updates
             isHit = true;

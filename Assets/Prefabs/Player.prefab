@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3613634943303128713}
   - component: {fileID: 8220805230449491632}
   - component: {fileID: 7082376189699285705}
+  - component: {fileID: 374280558539777154}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -198,9 +199,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GrabObjects
   grabPoint: {fileID: 3636491415192430673}
   rayPoint: {fileID: 4095170319651657372}
-  throwForce: 10
+  throwForce: 15
   rayDistance: 3
   pivotPoint: {fileID: 3383699783097757409}
+--- !u!114 &374280558539777154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2065506500624789424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0f3fd13387eb6442bdacd2cfd5c0da1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  health: 4
+  invincibilityTime: 0
 --- !u!1 &3140819746812630222
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,11 +374,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6628416427579435105, guid: 77aba3a4c2aa8534a80ef026efd7e233, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.31
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 6628416427579435105, guid: 77aba3a4c2aa8534a80ef026efd7e233, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.32
+      value: -0.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 6628416427579435105, guid: 77aba3a4c2aa8534a80ef026efd7e233, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.07
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
