@@ -8,6 +8,8 @@ TagManager:
   - Basic
   - Exit
   - Ground
+  - Glass
+  - Fall
   layers:
   - Default
   - TransparentFX
