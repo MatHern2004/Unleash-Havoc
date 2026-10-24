@@ -43,13 +43,17 @@ public class EnemyMovement : MonoBehaviour
         // Basic enemy patrol that only works when isHit is false
         if (!isHit)
         {
-            body.linearVelocity = new Vector2(speed * facing, body.linearVelocity.y);
+            if (gameObject.CompareTag("Basic"))
+                body.linearVelocity = new Vector2(speed * facing, body.linearVelocity.y);
+            else if (gameObject.CompareTag("Big"))
+                body.linearVelocity = new Vector2(speed/2 * facing, body.linearVelocity.y);
             // If we reach to the right, then change the direction
             if (body.position.x > rightSide.GetComponent<Transform>().position.x)
                 facing = -1;
             // If we reach the left side, then change the direction
             else if (body.position.x < leftSide.GetComponent<Transform>().position.x)
                 facing = 1;
+            
         }
     
     }
@@ -61,7 +65,7 @@ public class EnemyMovement : MonoBehaviour
         // If it was a basic box and the velocity of the collison was greater than the minimum speed
         float objectSpeed = collision.rigidbody.linearVelocity.magnitude;
         Debug.Log(objectSpeed);
-        if (collidedWith.CompareTag("Box") && objectSpeed > minHitSpeed)
+        if (collidedWith.CompareTag("Box") && objectSpeed > minHitSpeed && gameObject.CompareTag("Basic"))
         {
             // Set isHit to true to stop updates
             isHit = true;
@@ -77,6 +81,15 @@ public class EnemyMovement : MonoBehaviour
         {
             // Take damage from the basic enemy
             health.TakeDamage(enemyType);
+        }
+
+        if (collidedWith.CompareTag("Fall"))
+        {
+            // Set isHit to true to stop updates
+            isHit = true;
+            // Kill the object
+            Destroy(gameObject, 0.4f);
+            // Add sound effects possibly smoke particles
         }
     }
 }

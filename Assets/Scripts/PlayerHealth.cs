@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement; // For using Unity functions
 
@@ -14,22 +15,35 @@ public class PlayerHealth : MonoBehaviour
     EnemyMovement enemyName;
     // Beginning Scene
     private int firstLevel = 0;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    // Next Scene
+    private int secondLevel = 1;
+    // To get the name of the scene
+    private String scene;
 
     // Update is called once per frame
     void Update()
     {
+        // If the player health is less than one
         if (health < 1)
         {
-            Debug.Log("Restart the Level, Player Died!");
-            // Restart the Level
-            SceneManager.LoadScene(firstLevel);
+            scene = SceneManager.GetActiveScene().name;
+            // Update scene depending on the one the player is loaded into
+            switch (scene)
+            {
+                case "Level1":
+                SceneManager.LoadScene(firstLevel);
+                break;
+                case "Level2":
+                SceneManager.LoadScene(secondLevel);
+                break;
+                default:
+                Debug.Log("Error no scene available");
+                break;
+            }
         }
+           
     }
+        
 
     public void TakeDamage(String enemyType)
     {
@@ -40,10 +54,14 @@ public class PlayerHealth : MonoBehaviour
             health -= 1;
             // Give them some invinsibility time
             invincibleUntil = invincibilityTime + Time.time;
-            Debug.Log(invincibilityTime);
-            Debug.Log(Time.time);
-            // Log to check it works
-            Debug.Log("Enemy hit Player and has invincibility frames");
+        }
+          // If the enemyType is basic and the invincibilityTime is less than the current time, allow for damage by 1
+        else if (enemyType == "Big" && Time.time > invincibleUntil)
+        {
+            // Remove one health point from the player
+            health -= 2;
+            // Give them some invinsibility time
+            invincibleUntil = invincibilityTime + Time.time;
         }
     }
 }
