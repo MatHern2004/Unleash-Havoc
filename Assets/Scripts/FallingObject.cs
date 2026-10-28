@@ -7,17 +7,20 @@ public class FallingObject : MonoBehaviour
     // Awake function 
     private void Awake()
     {
-        fallingObjectBody = gameObject.GetComponent<Rigidbody2D>();
+       fallingObjectBody = gameObject.GetComponent<Rigidbody2D>();
     }
     // Collison for Things
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // What did the object collide with
-        GameObject collidedWith = collision.gameObject;
-        if (collidedWith.CompareTag("Box") && gameObject.CompareTag("Fall"))
-        {
+       // What did the object collide with
+       GameObject collidedWith = collision.gameObject;
+       if (collidedWith.CompareTag("Box") && gameObject.CompareTag("Fall"))
             // Change object to dynamic
             fallingObjectBody.bodyType = RigidbodyType2D.Dynamic;
+
+       if (collidedWith.CompareTag("Ground") && gameObject.CompareTag("Fall"))
+        {
+            // Box smaller pieces
         }
     }
 }
