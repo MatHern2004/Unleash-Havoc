@@ -1,4 +1,7 @@
-using UnityEngine; /// Unity library for its functions
+using UnityEngine;
+using UnityEngine.Audio;
+
+/// Unity library for its functions
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -12,6 +15,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     // Sound used for walking
     [SerializeField] private AudioClip walkSound;
+    // Sound for jumping
+    [SerializeField] private AudioClip jumpSound;
+    // Sound for falling on the ground
+    [SerializeField] private AudioClip fallToGroundSound;
     // private bool for changing the ground
     private bool isGrounded = true;
     // Boolean to check direction
@@ -20,8 +27,6 @@ public class PlayerMovement : MonoBehaviour
     private int layerIndex;
     // Player Speed (Serialized to Edit Within Unity)
     [SerializeField] private float speed = 10f;
-    // Audio Component for Sound FX
-    private AudioSource audioSource;
     
     // Function to initialize the Start
     private void Start()
@@ -34,7 +39,6 @@ public class PlayerMovement : MonoBehaviour
     {
         // Obtain the component information within the Rigidbody2D object
         body = GetComponent<Rigidbody2D>();
-        audioSource = GetComponent<AudioSource>();
     }
 
     // Updates per frame of the game
@@ -45,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
         // The radius is the circle that overlaps
         // The != null sets this to become a bool, letting us know that the isGrounded works
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, radius, layerIndex) != null;
-
+        
         // Left and Right Movement (Running)
         // Input.GetAxis("Horizontal") shifts the distance -1 and 1. This shifts based on the A or D / left or right key
         // Then we set the body.linearVelocity of Y to 0 because we don't want it to move as we move 
@@ -56,14 +60,20 @@ public class PlayerMovement : MonoBehaviour
 
         // Jumping (Up) and don't continue jumping unless they are on the ground
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
             // Modify linear velocity as we mantain the x velocity, but increase the y velocity by 10
             // This creates jumping
             body.linearVelocity = new Vector2(body.linearVelocity.x, speed);
-
+            // Play jump sound
+            SoundEffectsManager.instance.PlaySoundEffecsClip(jumpSound, transform, 1f);
+        }
         // Fast falling (down)
         if (Input.GetKeyDown(KeyCode.S))
+        {
             // Keep the x velocity the same, but decrease time in the air if we hold s
             body.linearVelocity = new Vector2(body.linearVelocity.x, -speed);
+            // Sound of hitting the ground
+        }
     }
 
     // For flipping the player

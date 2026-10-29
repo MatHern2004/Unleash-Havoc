@@ -221,6 +221,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   groundCheck: {fileID: 8671909922103744990}
   walkSound: {fileID: 8300000, guid: ea413b7f564fab34895e655d300716ff, type: 3}
+  jumpSound: {fileID: 8300000, guid: bb564d1807e525f4184c9710ec5acd89, type: 3}
+  fallToGroundSound: {fileID: 8300000, guid: 6a3d5438eb017d24eb5d2129e996fe8f, type: 3}
   speed: 10
 --- !u!114 &7082376189699285705
 MonoBehaviour:
@@ -239,7 +241,9 @@ MonoBehaviour:
   throwForce: 20
   rayDistance: 3
   pivotPoint: {fileID: 3383699783097757409}
-  throwSound: {fileID: 8300000, guid: 9cb2ae671b417fd46af54b5167a7fba3, type: 3}
+  throwSounds:
+  - {fileID: 8300000, guid: 9cb2ae671b417fd46af54b5167a7fba3, type: 3}
+  - {fileID: 8300000, guid: f966781fa631bf0438460c1cb6f8bdf0, type: 3}
   grabObjectSound: {fileID: 8300000, guid: 89bde9fb66fecca4eac3f613bfc34003, type: 3}
 --- !u!114 &374280558539777154
 MonoBehaviour:

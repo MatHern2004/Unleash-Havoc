@@ -37,4 +37,27 @@ public class SoundEffectsManager : MonoBehaviour
         Destroy(audioSource.gameObject, clipLength);
 
     }
+
+    // Play a random sound from an array of sound effects 
+     public void PlayRandomSoundEffecsClip(AudioClip[] audioClip, Transform spwnTransform, float volume)
+    {
+        // Get a random index
+        int rand = Random.Range(0, audioClip.Length);
+
+        // Spawn the invisible audioSource object
+        AudioSource audioSource = Instantiate(soundEffectObject, spwnTransform.position, Quaternion.identity);
+
+        // Set the audio clip based on the randomly selected clip's length
+        audioSource.clip = audioClip[rand];
+
+        // Play the audio clip
+        audioSource.Play();
+
+        // Get the length of the audio clip
+        float clipLength = audioSource.clip.length;
+
+        // Destory the audio once it finishes playing
+        Destroy(audioSource.gameObject, clipLength);
+
+    }
 }

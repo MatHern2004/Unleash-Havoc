@@ -7,28 +7,11 @@ public class BreakObject : MonoBehaviour
     [SerializeField] private GameObject glassShard;
     // SoundFX for breaking glass
     [SerializeField] private AudioClip breakGlassSound;
-    // For obtaining the sound itself
-    private AudioSource audioSource;
     // For glass breaking sound effect
     // To rotate glass
     private float rotateGlass;
-    // Collision glass
-    private BoxCollider2D glassCollision;
     // Glass Shard count
     private int glassCount  = 10;
-    
-    // Awake Function
-    private void Awake()
-    {
-        // Awake with the glass collision initialized
-        glassCollision = glassShard.GetComponent<BoxCollider2D>();
-    }
-
-    private void Start()
-    {
-        // Start with the audio source initialized
-         audioSource = GetComponent<AudioSource>(); 
-    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {

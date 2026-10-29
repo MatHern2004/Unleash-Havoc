@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7633086481705877352}
   - component: {fileID: 5513417751747920468}
   - component: {fileID: 5183556932710352763}
+  - component: {fileID: 4702524320971028812}
   m_Layer: 6
   m_Name: Box
   m_TagString: Untagged
@@ -167,3 +168,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &4702524320971028812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2540784888942730510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7455637e595d51a4db6627a46895b725, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectCollideBehaviors
+  objectHitGroundSounds:
+  - {fileID: 8300000, guid: 1010ee5e64dba2b4ea6e8e89bafc1569, type: 3}
+  - {fileID: 8300000, guid: a4f525514958dcc4abd9574c25caade3, type: 3}

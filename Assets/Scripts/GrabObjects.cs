@@ -19,7 +19,7 @@ public class GrabObjects : MonoBehaviour
     // Initialize the pivotPoint;
     [SerializeField] private Aiming pivotPoint;
     // Audio for Throwing
-    [SerializeField] private AudioClip throwSound;
+    [SerializeField] private AudioClip[] throwSounds;
     // When the object is grabbed by the player
     [SerializeField] private AudioClip grabObjectSound;
     
@@ -65,8 +65,7 @@ public class GrabObjects : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E) && grabbedObject == null)
             {
                 // Play grabObject SFX
-                audioSource.clip = grabObjectSound;
-                audioSource.Play();
+                SoundEffectsManager.instance.PlaySoundEffecsClip(grabObjectSound, transform, 1f);
                 // Set the object found in our collider and set to as our currently grabbed object
                 grabbedObject = hitInfo.collider.gameObject;
                 // Set the object to kinematic so it isn't affected by gravity anymore
@@ -98,15 +97,15 @@ public class GrabObjects : MonoBehaviour
         // Throw the object
         if (Input.GetMouseButton(0) && grabbedObject != null)
             {
+                // Play Throw sounds
+                Debug.Log("I AM BEING RAN!");
+                SoundEffectsManager.instance.PlayRandomSoundEffecsClip(throwSounds, transform, 1f);
                 // Reverse the object to begin experiencing gravity
                 grabbedObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
                 // Make sure the physics is being simulated properly
                 grabbedObject.GetComponent<Rigidbody2D>().simulated = true;
                 // Apply an immediate force to the object
                 grabbedObject.GetComponent<Rigidbody2D>().AddForce(direction * throwForce, ForceMode2D.Impulse);
-                // Play Throw SoundFX
-                audioSource.clip = throwSound;
-                audioSource.Play();
                 // Set parent to null 
                 grabbedObject.transform.SetParent(null); 
                 // grabbedObject is reset because it was thrown

@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine; // For Unity functions
 
@@ -13,6 +14,12 @@ public class ScriptLogic : MonoBehaviour
     [SerializeField] private GameObject switchChange;
     // For updating the Gate and Opening it
     [SerializeField] private GameObject gate;
+    // Switch gate activate sound
+    [SerializeField] private AudioClip switchActivateSound;
+    // Gate rising sound
+    [SerializeField] private AudioClip raiseGateSound;
+    // Sound that plays when a box hits the switch
+    [SerializeField] private AudioClip objectHitSound;
     // To open the gate
     private Rigidbody2D gateOpen;
     // For color changes
@@ -34,7 +41,6 @@ public class ScriptLogic : MonoBehaviour
     }
 
     // Collision Logic
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // Get the object name
@@ -44,12 +50,18 @@ public class ScriptLogic : MonoBehaviour
         // If it was a basic box and the velocity osf the collison was greater than 3
         if (collidedWith.CompareTag("Box") && objectSpeed * weirdAngleAdd > minHitSpeed && colorChange.color != Color.green)
         {
+            // Sound of object making contact with swtich;
+            SoundEffectsManager.instance.PlaySoundEffecsClip(objectHitSound, transform, 1f);
             // Change the color to show it was hit
             colorChange.color = Color.green;
+            // Play sound of the switch being set
+            SoundEffectsManager.instance.PlaySoundEffecsClip(switchActivateSound, transform, 1f);
             // Raise the gate 
             gateOpen.bodyType = RigidbodyType2D.Kinematic;
             // Let the gate rise at a speed of 3.0f
             gateOpen.linearVelocity = new Vector2(gateOpen.linearVelocity.x, gateOpenSpeed);
+            // Play gate rising noise
+            // HERE
         }
     }
 }   
