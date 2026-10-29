@@ -5,7 +5,11 @@ public class BreakObject : MonoBehaviour
 
     // For Spawning Glass Shards
     [SerializeField] private GameObject glassShard;
-    // For obtaining glass position
+    // SoundFX for breaking glass
+    [SerializeField] private AudioClip breakGlassSound;
+    // For obtaining the sound itself
+    private AudioSource audioSource;
+    // For glass breaking sound effect
     // To rotate glass
     private float rotateGlass;
     // Collision glass
@@ -16,7 +20,14 @@ public class BreakObject : MonoBehaviour
     // Awake Function
     private void Awake()
     {
+        // Awake with the glass collision initialized
         glassCollision = glassShard.GetComponent<BoxCollider2D>();
+    }
+
+    private void Start()
+    {
+        // Start with the audio source initialized
+         audioSource = GetComponent<AudioSource>(); 
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -26,7 +37,8 @@ public class BreakObject : MonoBehaviour
 
         // If a box was thrown at glass
         if (collidedWith.CompareTag("Box") && gameObject.CompareTag("Glass"))
-        {
+        {// Play SFX
+            SoundEffectsManager.instance.PlaySoundEffecsClip(breakGlassSound, transform, 1f);
             // Shatter the glass
             Destroy(gameObject);
             // Spawn the glass shards 

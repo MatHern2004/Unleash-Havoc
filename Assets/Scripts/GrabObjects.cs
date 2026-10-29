@@ -18,6 +18,13 @@ public class GrabObjects : MonoBehaviour
 
     // Initialize the pivotPoint;
     [SerializeField] private Aiming pivotPoint;
+    // Audio for Throwing
+    [SerializeField] private AudioClip throwSound;
+    // When the object is grabbed by the player
+    [SerializeField] private AudioClip grabObjectSound;
+    
+    // Audio Source component
+    private AudioSource audioSource; 
 
     // For updating the direction the player is facing for updating the grabbed object
     private float facing;
@@ -33,6 +40,8 @@ public class GrabObjects : MonoBehaviour
     {
         // Obtain the layerIndex that is needed to grab the game object in front of the player
         layerIndex = LayerMask.NameToLayer("Objects");
+        // Obtain the AudioSource component
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -55,6 +64,9 @@ public class GrabObjects : MonoBehaviour
             // Grab object
             if (Input.GetKeyDown(KeyCode.E) && grabbedObject == null)
             {
+                // Play grabObject SFX
+                audioSource.clip = grabObjectSound;
+                audioSource.Play();
                 // Set the object found in our collider and set to as our currently grabbed object
                 grabbedObject = hitInfo.collider.gameObject;
                 // Set the object to kinematic so it isn't affected by gravity anymore
@@ -92,6 +104,9 @@ public class GrabObjects : MonoBehaviour
                 grabbedObject.GetComponent<Rigidbody2D>().simulated = true;
                 // Apply an immediate force to the object
                 grabbedObject.GetComponent<Rigidbody2D>().AddForce(direction * throwForce, ForceMode2D.Impulse);
+                // Play Throw SoundFX
+                audioSource.clip = throwSound;
+                audioSource.Play();
                 // Set parent to null 
                 grabbedObject.transform.SetParent(null); 
                 // grabbedObject is reset because it was thrown

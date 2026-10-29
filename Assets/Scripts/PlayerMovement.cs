@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     private float radius;
     // Transform for checking if the user is on the ground
     [SerializeField] private Transform groundCheck;
+    // Sound used for walking
+    [SerializeField] private AudioClip walkSound;
     // private bool for changing the ground
     private bool isGrounded = true;
     // Boolean to check direction
@@ -18,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
     private int layerIndex;
     // Player Speed (Serialized to Edit Within Unity)
     [SerializeField] private float speed = 10f;
+    // Audio Component for Sound FX
+    private AudioSource audioSource;
     
     // Function to initialize the Start
     private void Start()
@@ -30,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // Obtain the component information within the Rigidbody2D object
         body = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Updates per frame of the game
@@ -45,6 +50,9 @@ public class PlayerMovement : MonoBehaviour
         // Input.GetAxis("Horizontal") shifts the distance -1 and 1. This shifts based on the A or D / left or right key
         // Then we set the body.linearVelocity of Y to 0 because we don't want it to move as we move 
         body.linearVelocity = new Vector2(Input.GetAxis("Horizontal") * speed, body.linearVelocity.y);
+        // Play walking sound effect if the player is moving left or right
+        // audioSource.clip = walkSound;
+        // audioSource.Play();
 
         // Jumping (Up) and don't continue jumping unless they are on the ground
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
