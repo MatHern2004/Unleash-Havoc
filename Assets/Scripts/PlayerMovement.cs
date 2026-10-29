@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.InputSystem;
 
 /// Unity library for its functions
 
@@ -14,13 +15,17 @@ public class PlayerMovement : MonoBehaviour
     // Transform for checking if the user is on the ground
     [SerializeField] private Transform groundCheck;
     // Sound used for walking
-    [SerializeField] private AudioClip walkSound;
+    [SerializeField] private AudioClip[] walkSound;
+    // float to count the time between each footstep
+    private float stepTimer;
     // Sound for jumping
     [SerializeField] private AudioClip jumpSound;
     // Sound for falling on the ground
     [SerializeField] private AudioClip fallToGroundSound;
     // private bool for changing the ground
     private bool isGrounded = true;
+    // private bool to save the frame we were on the ground
+    private bool wasGrounded;
     // Boolean to check direction
     private bool facingRight = true;
     // layerIndex for it
@@ -49,14 +54,19 @@ public class PlayerMovement : MonoBehaviour
         // The radius is the circle that overlaps
         // The != null sets this to become a bool, letting us know that the isGrounded works
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, radius, layerIndex) != null;
+
+        // Landing sound that plays each time the player lands
+        if (isGrounded && !wasGrounded)
+        {
+            SoundEffectsManager.instance.PlaySoundEffecsClip(fallToGroundSound, transform, 0.01f);
+        }
+        wasGrounded = isGrounded;
         
         // Left and Right Movement (Running)
         // Input.GetAxis("Horizontal") shifts the distance -1 and 1. This shifts based on the A or D / left or right key
         // Then we set the body.linearVelocity of Y to 0 because we don't want it to move as we move 
         body.linearVelocity = new Vector2(Input.GetAxis("Horizontal") * speed, body.linearVelocity.y);
-        // Play walking sound effect if the player is moving left or right
-        // audioSource.clip = walkSound;
-        // audioSource.Play();
+
 
         // Jumping (Up) and don't continue jumping unless they are on the ground
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
@@ -72,7 +82,6 @@ public class PlayerMovement : MonoBehaviour
         {
             // Keep the x velocity the same, but decrease time in the air if we hold s
             body.linearVelocity = new Vector2(body.linearVelocity.x, -speed);
-            // Sound of hitting the ground
         }
     }
 
@@ -87,6 +96,26 @@ public class PlayerMovement : MonoBehaviour
         // IF I am facing the left and am facing hte right, then flip the player
         if (inputHorizontal < 0 && facingRight)
             Flip();
+
+        // Walking sound logic
+        if (isGrounded && Mathf.Abs(inputHorizontal) > 0.01f)
+        {
+            // Step timer is subtracted by the fixed time passed
+            stepTimer -= Time.fixedDeltaTime;
+            // If the stepTimer reaches 0
+            if (stepTimer <= 0f)
+            {
+                // Play the sound after the timer ends to avoid endless walk sounds
+                SoundEffectsManager.instance.PlayRandomSoundEffecsClip(walkSound, transform, 1f);
+                // Increase timer by a third of a second
+                stepTimer = 0.35f;
+            }
+        }
+        else
+        {
+            // Reset timer if player begins to walk after standing still
+            stepTimer = 0f;
+        }
     }
 
     // Function to assist with flipping the player sprite

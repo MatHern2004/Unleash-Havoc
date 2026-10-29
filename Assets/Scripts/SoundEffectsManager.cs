@@ -53,6 +53,9 @@ public class SoundEffectsManager : MonoBehaviour
         // Play the audio clip
         audioSource.Play();
 
+        // Modify volume]
+        audioSource.volume = volume;
+
         // Get the length of the audio clip
         float clipLength = audioSource.clip.length;
 

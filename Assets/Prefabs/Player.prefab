@@ -220,9 +220,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   groundCheck: {fileID: 8671909922103744990}
-  walkSound: {fileID: 8300000, guid: ea413b7f564fab34895e655d300716ff, type: 3}
+  walkSound:
+  - {fileID: 8300000, guid: ea413b7f564fab34895e655d300716ff, type: 3}
+  - {fileID: 8300000, guid: 7a2dd60d28a07aa46b62deac8c6a1094, type: 3}
+  - {fileID: 8300000, guid: 3feb31cbb43145f46be0d8b309490f47, type: 3}
   jumpSound: {fileID: 8300000, guid: bb564d1807e525f4184c9710ec5acd89, type: 3}
-  fallToGroundSound: {fileID: 8300000, guid: 6a3d5438eb017d24eb5d2129e996fe8f, type: 3}
+  fallToGroundSound: {fileID: 8300000, guid: 396bcc72e4c244d4f8e7e8662bf4f272, type: 3}
   speed: 10
 --- !u!114 &7082376189699285705
 MonoBehaviour:
