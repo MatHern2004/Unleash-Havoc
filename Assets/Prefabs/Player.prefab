@@ -261,7 +261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   health: 4
-  invincibilityTime: 0
+  invincibilityTime: 3
   enemyHitPlayerSound: {fileID: 8300000, guid: 6c66f019984306c4593e53bc79b01f5c, type: 3}
 --- !u!111 &1366124224960191618
 Animation:

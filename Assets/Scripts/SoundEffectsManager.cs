@@ -15,6 +15,13 @@ public class SoundEffectsManager : MonoBehaviour
         {
             // If the SoundEffectsManager object is null, then set it to the current object
             instance = this;
+            // Dont Destroy on Load
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            // Destroy previous gameObject for the new one so I can have more than listener
+            Destroy(gameObject);
         }
     }
 
