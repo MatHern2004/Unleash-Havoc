@@ -1,9 +1,9 @@
 using System;
 using System.Threading.Tasks;
-using TMPro;
+using TMPro; // For TextMeshPro
 using Unity.VisualScripting;
-using UnityEngine;
-using UnityEngine.SceneManagement; // For using Unity functions
+using UnityEngine; // For using Unity functions
+using UnityEngine.SceneManagement; // For Unity SceneManagement
 
 public class PlayerHealth : MonoBehaviour
 {

@@ -1,4 +1,4 @@
-using UnityEngine; // For unity scripts
+using UnityEngine; // For Unity functions
 
 public class Aiming : MonoBehaviour
 {

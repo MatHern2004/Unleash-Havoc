@@ -1,4 +1,4 @@
-using UnityEngine;
+using UnityEngine; // for Unity functions
 
 public class ObjectCollideBehaviors : MonoBehaviour
 {

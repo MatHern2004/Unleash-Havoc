@@ -1,5 +1,5 @@
 using System;
-using UnityEngine;
+using UnityEngine; // For Unity functions
 using UnityEngine.SceneManagement;
 
 public class EndOfLevelScript : MonoBehaviour
