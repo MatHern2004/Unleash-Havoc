@@ -14,9 +14,11 @@ public class FallingObject : MonoBehaviour
     {
        // What did the object collide with
        GameObject collidedWith = collision.gameObject;
-       if (collidedWith.CompareTag("Box") && gameObject.CompareTag("Fall"))
-            // Change object to dynamic
+       if ((collidedWith.CompareTag("Box") || collidedWith.CompareTag("Ball")) && gameObject.CompareTag("Fall"))
+        {
+            // Make it dynamic and heavy
             fallingObjectBody.bodyType = RigidbodyType2D.Dynamic;
             fallingObjectBody.mass = 100f;
+        }        
     }
 }
