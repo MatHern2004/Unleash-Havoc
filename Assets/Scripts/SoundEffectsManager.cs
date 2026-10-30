@@ -11,6 +11,7 @@ public class SoundEffectsManager : MonoBehaviour
     // Call to set object appropriately 
     private void Awake()
     {
+        Debug.Log("Awake called. soundEffectObject is null: " + (soundEffectObject == null));
         if (instance == null)
         {
             // If the SoundEffectsManager object is null, then set it to the current object

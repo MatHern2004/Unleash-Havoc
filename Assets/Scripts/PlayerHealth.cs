@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement; // For using Unity functions
@@ -12,6 +13,8 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private float invincibilityTime = 5.0f;
     // Sound for when an enemy hits the player
     [SerializeField] private AudioClip enemyHitPlayerSound;
+    // TextMeshProEdit
+    [SerializeField] private TextMeshProUGUI healthText;
     // Actual Invincibility Until
     private float invincibleUntil;
     // Invinsibility alpha value
@@ -64,6 +67,8 @@ public class PlayerHealth : MonoBehaviour
         {
             // Remove one health point from the player
             health -= 1;
+            // Update the text above the player
+            UpdateHealthText();
             // Play the sound of the enemy hitting the player
             SoundEffectsManager.instance.PlaySoundEffecsClip(enemyHitPlayerSound, transform, 1f);
             // Give them some invinsibility time
@@ -78,5 +83,12 @@ public class PlayerHealth : MonoBehaviour
             // Give them some invinsibility time
             invincibleUntil = invincibilityTime + Time.time;
         }
+    }
+
+    // Function to modify the TextMeshProText
+    private void UpdateHealthText()
+    {
+        // Update the health
+        healthText.text = "Health: " + health;
     }
 }
