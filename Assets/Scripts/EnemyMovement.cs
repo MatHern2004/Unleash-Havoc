@@ -11,6 +11,10 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float speed = 10f;
     // For updating player health
     [SerializeField] private PlayerHealth health;
+    // For playing sound for the enemy being hit
+    [SerializeField] private AudioClip hitEnemySound;
+    // For enemy death sound
+    [SerializeField] private AudioClip deathEnemySound;
     // Tag to determine the enemyType used for damage scaling
     public String enemyType { get; private set; }
     // Document which direction the enemy is facing
@@ -69,6 +73,10 @@ public class EnemyMovement : MonoBehaviour
         {
             // Set isHit to true to stop updates
             isHit = true;
+            // Play the enemy hit sound
+            SoundEffectsManager.instance.PlaySoundEffecsClip(hitEnemySound, transform, 1f);
+            // Play the enemy death scream
+            SoundEffectsManager.instance.PlaySoundEffecsClip(deathEnemySound, transform, 1f);
             // Push the enemy back
             body.AddForce(body.linearVelocity, ForceMode2D.Impulse);
             // Destroy the enemy!

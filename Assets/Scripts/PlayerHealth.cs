@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement; // For using Unity functions
@@ -8,9 +9,15 @@ public class PlayerHealth : MonoBehaviour
     // Health of the player
     [SerializeField] private int health = 3;
     // Invincibility Frames
-    [SerializeField] private float invincibilityTime = 3.0f;
+    [SerializeField] private float invincibilityTime = 5.0f;
+    // Sound for when an enemy hits the player
+    [SerializeField] private AudioClip enemyHitPlayerSound;
     // Actual Invincibility Until
     private float invincibleUntil;
+    // Invinsibility alpha value
+    private SpriteRenderer flashing;
+    // private flash count
+    private int flashCount = 3;
     // EnemyMovement script for its Type
     EnemyMovement enemyName;
     // Beginning Scene
@@ -19,7 +26,13 @@ public class PlayerHealth : MonoBehaviour
     private int secondLevel = 1;
     // To get the name of the scene
     private String scene;
+    // color for changing alpha
+    private Color color;
 
+    private void Awake()
+    {
+        flashing = GetComponent<SpriteRenderer>();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -52,8 +65,11 @@ public class PlayerHealth : MonoBehaviour
         {
             // Remove one health point from the player
             health -= 1;
+            // Play the sound of the enemy hitting the player
+            SoundEffectsManager.instance.PlaySoundEffecsClip(enemyHitPlayerSound, transform, 1f);
             // Give them some invinsibility time
             invincibleUntil = invincibilityTime + Time.time;
+            
         }
           // If the enemyType is basic and the invincibilityTime is less than the current time, allow for damage by 1
         else if (enemyType == "Big" && Time.time > invincibleUntil)

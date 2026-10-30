@@ -262,6 +262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   health: 4
   invincibilityTime: 0
+  enemyHitPlayerSound: {fileID: 8300000, guid: 6c66f019984306c4593e53bc79b01f5c, type: 3}
 --- !u!111 &1366124224960191618
 Animation:
   m_ObjectHideFlags: 0
@@ -411,7 +412,7 @@ Transform:
   m_GameObject: {fileID: 3140819746812630222}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.72, z: -10}
+  m_LocalPosition: {x: 0, y: 3.35, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -427,7 +428,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.187631, g: 0.24429299, b: 0.3333333, a: 0}
+  m_BackGroundColor: {r: 0.8745099, g: 0.8745099, b: 0.8745099, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
