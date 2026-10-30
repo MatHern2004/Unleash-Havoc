@@ -27,6 +27,8 @@ public class PlayerHealth : MonoBehaviour
     private int firstLevel = 0;
     // Next Scene
     private int secondLevel = 1;
+    // Next scene
+    private int thirdLevel = 2;
     // To get the name of the scene
     private String scene;
     // color for changing alpha
@@ -51,6 +53,9 @@ public class PlayerHealth : MonoBehaviour
                 break;
                 case "Level2":
                 SceneManager.LoadScene(secondLevel);
+                break;
+                case "Level3":
+                SceneManager.LoadScene(thirdLevel);
                 break;
                 default:
                 Debug.Log("Error no scene available");
@@ -80,6 +85,10 @@ public class PlayerHealth : MonoBehaviour
         {
             // Remove one health point from the player
             health -= 2;
+            // Update the text above the player
+            UpdateHealthText();
+             // Play the sound of the enemy hitting the player
+            SoundEffectsManager.instance.PlaySoundEffecsClip(enemyHitPlayerSound, transform, 1f);
             // Give them some invinsibility time
             invincibleUntil = invincibilityTime + Time.time;
         }

@@ -7,8 +7,9 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private Transform rightSide;
     // Left side of the field
     [SerializeField] private Transform leftSide;
+    // To remove leftSide and rightSide
     // For modifying enemy speed
-    [SerializeField] private float speed = 10f;
+    [SerializeField] public float speed = 10f;
     // For updating player health
     [SerializeField] private PlayerHealth health;
     // For playing sound for the enemy being hit

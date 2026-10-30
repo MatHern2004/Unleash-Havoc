@@ -4,10 +4,12 @@ using UnityEngine.SceneManagement;
 
 public class EndOfLevelScript : MonoBehaviour
 {
-     // Beginning Scene
-    private int firstLevel = 0;
     // Next Scene
     private int secondLevel = 1;
+    // Next Scene
+    private int thirdLevel = 2;
+
+
     // Sound effect for beating the stage
     [SerializeField] private AudioClip winSound;
 
@@ -24,6 +26,12 @@ public class EndOfLevelScript : MonoBehaviour
                 SoundEffectsManager.instance.PlaySoundEffecsClip(winSound, transform, 1f);
                 // Load the next level if we are on Level 1
                 SceneManager.LoadScene(secondLevel);
+                break;
+                case "Level2":
+                // Play the win sound effect
+                SoundEffectsManager.instance.PlaySoundEffecsClip(winSound, transform, 1f);
+                // Load the next level if we are on Level 1
+                SceneManager.LoadScene(thirdLevel);
                 break;
             }
             

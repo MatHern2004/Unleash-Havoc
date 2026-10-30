@@ -248,6 +248,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9cb2ae671b417fd46af54b5167a7fba3, type: 3}
   - {fileID: 8300000, guid: f966781fa631bf0438460c1cb6f8bdf0, type: 3}
   grabObjectSound: {fileID: 8300000, guid: 89bde9fb66fecca4eac3f613bfc34003, type: 3}
+  enemyThrowSound: {fileID: 8300000, guid: 4b9eb78d58867664bbded0fd9c883fde, type: 3}
 --- !u!114 &374280558539777154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,7 +262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   health: 4
-  invincibilityTime: 3
+  invincibilityTime: 2
   enemyHitPlayerSound: {fileID: 8300000, guid: 6c66f019984306c4593e53bc79b01f5c, type: 3}
   healthText: {fileID: 8331504173635788368}
 --- !u!111 &1366124224960191618
@@ -310,7 +311,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 1.44805
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0

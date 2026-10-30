@@ -22,9 +22,11 @@ public class GrabObjects : MonoBehaviour
     [SerializeField] private AudioClip[] throwSounds;
     // When the object is grabbed by the player
     [SerializeField] private AudioClip grabObjectSound;
-    
-    // Audio Source component
-    private AudioSource audioSource; 
+    // Enemy grab sound
+    [SerializeField] private AudioClip enemyThrowSound;
+    // powerup Bool for grabbing enemie
+    private bool powerupGrabbed; 
+
 
     // For updating the direction the player is facing for updating the grabbed object
     private float facing;
@@ -40,13 +42,15 @@ public class GrabObjects : MonoBehaviour
     {
         // Obtain the layerIndex that is needed to grab the game object in front of the player
         layerIndex = LayerMask.NameToLayer("Objects");
-        // Obtain the AudioSource component
-        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        powerupGrabbed = true;
+        // If the powerup was obtained
+        if (powerupGrabbed)
+            layerIndex = LayerMask.NameToLayer("Enemy");
         // Used to determine the direction the player is facing for the parent object and its children
         facing = Mathf.Sign(transform.localScale.x);
         // Change the throwing angle
@@ -103,7 +107,16 @@ public class GrabObjects : MonoBehaviour
                 grabbedObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
                 // Make sure the physics is being simulated properly
                 grabbedObject.GetComponent<Rigidbody2D>().simulated = true;
-                // Apply an immediate force to the object
+                  // If the object itself is an enemy make em scream
+                 if (grabbedObject.CompareTag("Basic"))
+                 {
+                    // Sound effect for enemy being thrown
+                    SoundEffectsManager.instance.PlaySoundEffecsClip(enemyThrowSound, transform , 1f);
+                    // To let them launch extremely far and fast
+                    grabbedObject.GetComponent<EnemyMovement>().speed = -100f;
+                     // Apply an immediate force to the object
+                    grabbedObject.GetComponent<Rigidbody2D>().AddForce(direction * throwForce*2, ForceMode2D.Impulse);
+                 }
                 grabbedObject.GetComponent<Rigidbody2D>().AddForce(direction * throwForce, ForceMode2D.Impulse);
                 // Set parent to null 
                 grabbedObject.transform.SetParent(null); 
