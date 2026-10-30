@@ -25,7 +25,10 @@ public class GrabObjects : MonoBehaviour
     // Enemy grab sound
     [SerializeField] private AudioClip enemyThrowSound;
     // powerup Bool for grabbing enemie
-    private bool powerupGrabbed; 
+    public bool powerupGrabbed;
+    // powerup last time
+    public float powerupTime;
+    
 
 
     // For updating the direction the player is facing for updating the grabbed object
@@ -47,10 +50,17 @@ public class GrabObjects : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        powerupGrabbed = true;
+        // If the powerup is shorter than the normal time, end it
+        if (powerupGrabbed && Time.time >= powerupTime)
+            powerupGrabbed = false;
+
         // If the powerup was obtained
-        if (powerupGrabbed)
+        if (powerupGrabbed && Time.time < powerupTime)
             layerIndex = LayerMask.NameToLayer("Enemy");
+        else
+            // Else reset the layer back to objects
+            layerIndex= LayerMask.NameToLayer("Objects");
+
         // Used to determine the direction the player is facing for the parent object and its children
         facing = Mathf.Sign(transform.localScale.x);
         // Change the throwing angle
