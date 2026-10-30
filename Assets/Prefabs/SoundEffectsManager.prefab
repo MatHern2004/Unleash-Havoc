@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca38390202a208040ad56ef899361310, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundEffectsManager
-  soundEffectObject: {fileID: 0}
+  soundEffectObject: {fileID: 8048625245053098032, guid: 39992638961772d4583060f11f1a6834, type: 3}
