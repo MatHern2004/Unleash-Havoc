@@ -2,13 +2,15 @@ using UnityEngine; // For Unity functions
 
 public class Powerups : MonoBehaviour
 {
+    // Duration of time
     [SerializeField] private float duration = 10f;
     // When the player touches the powerup
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision);
-        if (collision.gameObject.CompareTag("Player"))
+        // If the powerup collides with the Player
+        if (collision.CompareTag("Player"))
         {
+            Debug.Log(collision);
             // Get the grabObject code to modify its values
             GrabObjects grabCode = collision.GetComponent<GrabObjects>();
             if (grabCode != null)
@@ -17,8 +19,8 @@ public class Powerups : MonoBehaviour
                 // Set powerUp time based on set duration
                 grabCode.powerupGrabbed = true;
                 grabCode.powerupTime = Time.time + duration;
-                // After you collect the powerup, destroy it
             }
+            // After you get the object, destroy it
             Destroy(gameObject);
         }
        

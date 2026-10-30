@@ -4254,11 +4254,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3206343474197137336, guid: d3cb682652a7418469a3e6235949e6a4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -79.827255
+      value: -30.15
       objectReference: {fileID: 0}
     - target: {fileID: 3206343474197137336, guid: d3cb682652a7418469a3e6235949e6a4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.899648
+      value: -9.09
       objectReference: {fileID: 0}
     - target: {fileID: 3206343474197137336, guid: d3cb682652a7418469a3e6235949e6a4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6667,6 +6667,7 @@ GameObject:
   - component: {fileID: 1804832380}
   - component: {fileID: 1804832382}
   - component: {fileID: 1804832383}
+  - component: {fileID: 1804832384}
   m_Layer: 0
   m_Name: Powerup
   m_TagString: Untagged
@@ -6683,7 +6684,7 @@ Transform:
   m_GameObject: {fileID: 1804832379}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -87.729996, y: 7.54, z: 0}
+  m_LocalPosition: {x: -87.729996, y: 7.56, z: 0}
   m_LocalScale: {x: 0.28373122, y: 0.3248, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6795,6 +6796,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 4.6, y: 4.6}
   m_EdgeRadius: 0
+--- !u!114 &1804832384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1804832379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9e2b67125de9e945b4ddc413751ad16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Powerups
+  duration: 10
 --- !u!1 &1825456289
 GameObject:
   m_ObjectHideFlags: 0
