@@ -9,7 +9,7 @@ public class ScriptLogic : MonoBehaviour
     // Gate opening speed
     private float gateOpenSpeed = 3.0f;
     // Extra assistance for weird angle
-    private float weirdAngleAdd = 3.0f;
+    private float weirdAngleAdd = 10.0f;
     // For updating the Switch color
     [SerializeField] private GameObject switchChange;
     // For updating the Gate and Opening it
@@ -48,20 +48,18 @@ public class ScriptLogic : MonoBehaviour
         GameObject collidedWith = collision.gameObject;
         float objectSpeed = collision.rigidbody.linearVelocity.magnitude;
         // If it was a basic box and the velocity osf the collison was greater than 3
-        if (collidedWith.CompareTag("Box") && objectSpeed * weirdAngleAdd > minHitSpeed && colorChange.color != Color.green)
+        if ((collidedWith.CompareTag("Box") || collidedWith.CompareTag("Ball")) && objectSpeed * weirdAngleAdd > minHitSpeed && colorChange.color != Color.green)
         {
             // Sound of object making contact with swtich;
             SoundEffectsManager.instance.PlaySoundEffecsClip(objectHitSound, transform, 1f);
             // Change the color to show it was hit
             colorChange.color = Color.green;
-            // Play sound of the switch being set
+            // Play sound of the switch being set and gate rising
             SoundEffectsManager.instance.PlaySoundEffecsClip(switchActivateSound, transform, 1f);
             // Raise the gate 
             gateOpen.bodyType = RigidbodyType2D.Kinematic;
             // Let the gate rise at a speed of 3.0f
             gateOpen.linearVelocity = new Vector2(gateOpen.linearVelocity.x, gateOpenSpeed);
-            // Play gate rising noise
-            // HERE
         }
     }
 }   

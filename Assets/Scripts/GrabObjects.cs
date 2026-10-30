@@ -98,7 +98,6 @@ public class GrabObjects : MonoBehaviour
         if (Input.GetMouseButton(0) && grabbedObject != null)
             {
                 // Play Throw sounds
-                Debug.Log("I AM BEING RAN!");
                 SoundEffectsManager.instance.PlayRandomSoundEffecsClip(throwSounds, transform, 1f);
                 // Reverse the object to begin experiencing gravity
                 grabbedObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;

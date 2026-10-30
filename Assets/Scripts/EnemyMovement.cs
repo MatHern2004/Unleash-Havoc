@@ -15,6 +15,8 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private AudioClip hitEnemySound;
     // For enemy death sound
     [SerializeField] private AudioClip deathEnemySound;
+    // bounceOffEnemySound;
+    [SerializeField] private AudioClip boundOffEnemySound;
     // Tag to determine the enemyType used for damage scaling
     public String enemyType { get; private set; }
     // Document which direction the enemy is facing
@@ -25,7 +27,8 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float minHitSpeed;
     // Create variable for RigidBody2D
     private Rigidbody2D body;
-
+    // Create variable for object Rigid2DBody
+    private Rigidbody2D objectBody;
 
     // Function used to initiate enemy component
     private void Awake()
@@ -81,7 +84,6 @@ public class EnemyMovement : MonoBehaviour
             body.AddForce(body.linearVelocity, ForceMode2D.Impulse);
             // Destroy the enemy!
             Destroy(gameObject, 0.4f);
-            // Add sound effects possibly smoke particles
         }
 
         // If the enemy collides with a player, have a life bars
@@ -91,13 +93,25 @@ public class EnemyMovement : MonoBehaviour
             health.TakeDamage(enemyType);
         }
 
+        if (collidedWith.CompareTag("Box") && gameObject.CompareTag("Big"))
+        {
+            objectBody = collidedWith.gameObject.GetComponent<Rigidbody2D>();
+            objectBody.AddForce(-objectBody.linearVelocity * 3, ForceMode2D.Impulse);
+            SoundEffectsManager.instance.PlaySoundEffecsClip(boundOffEnemySound, transform, 1f);
+        }
+
         if (collidedWith.CompareTag("Fall"))
         {
             // Set isHit to true to stop updates
             isHit = true;
             // Kill the object
-            Destroy(gameObject, 0.4f);
-            // Add sound effects possibly smoke particles
+             // Play the enemy hit sound
+            SoundEffectsManager.instance.PlaySoundEffecsClip(hitEnemySound, transform, 1f);
+            // Play the enemy death scream
+            SoundEffectsManager.instance.PlaySoundEffecsClip(deathEnemySound, transform, 1f);
+            // Destroy the object and entity once the object hits them!
+            Destroy(collidedWith, 0.2f);
+            Destroy(gameObject, 0.2f);
         }
     }
 }

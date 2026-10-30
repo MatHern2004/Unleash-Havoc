@@ -13,5 +13,11 @@ public class ObjectCollideBehaviors : MonoBehaviour
             // Play the sound effects if the object collided with the ground
             SoundEffectsManager.instance.PlayRandomSoundEffecsClip(objectHitGroundSounds, transform, 1f);
         }
+
+        if (collidedWith.CompareTag("Ground") && gameObject.CompareTag("Ball"))
+        {
+            // Play the sound effects if the object collided with the ground
+            SoundEffectsManager.instance.PlayRandomSoundEffecsClip(objectHitGroundSounds, transform, 1f);
+        }
     }
 }
