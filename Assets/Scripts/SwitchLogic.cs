@@ -48,7 +48,7 @@ public class ScriptLogic : MonoBehaviour
         GameObject collidedWith = collision.gameObject;
         float objectSpeed = collision.rigidbody.linearVelocity.magnitude;
         // If it was a basic box and the velocity osf the collison was greater than 3
-        if ((collidedWith.CompareTag("Box") || collidedWith.CompareTag("Ball")) && objectSpeed * weirdAngleAdd > minHitSpeed && colorChange.color != Color.green)
+        if ((collidedWith.CompareTag("Box") || collidedWith.CompareTag("Ball")) && colorChange.color != Color.green)
         {
             // Sound of object making contact with swtich;
             SoundEffectsManager.instance.PlaySoundEffecsClip(objectHitSound, transform, 1f);

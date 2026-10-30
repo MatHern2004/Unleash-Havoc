@@ -72,7 +72,7 @@ public class EnemyMovement : MonoBehaviour
         // If it was a basic box and the velocity of the collison was greater than the minimum speed
         float objectSpeed = collision.rigidbody.linearVelocity.magnitude;
         Debug.Log(objectSpeed);
-        if (collidedWith.CompareTag("Box") && objectSpeed > minHitSpeed && gameObject.CompareTag("Basic"))
+        if ((collidedWith.CompareTag("Box") || collidedWith.CompareTag("Ball")) && objectSpeed > minHitSpeed && gameObject.CompareTag("Basic"))
         {
             // Set isHit to true to stop updates
             isHit = true;

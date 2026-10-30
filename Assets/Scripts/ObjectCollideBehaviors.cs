@@ -4,6 +4,7 @@ public class ObjectCollideBehaviors : MonoBehaviour
 {
     // Sound effect array for multiple sounds
     [SerializeField] private AudioClip[] objectHitGroundSounds;
+    [SerializeField] private AudioClip[] objectBallGroundSounds;
      void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject collidedWith = collision.gameObject;
@@ -16,8 +17,8 @@ public class ObjectCollideBehaviors : MonoBehaviour
 
         if (collidedWith.CompareTag("Ground") && gameObject.CompareTag("Ball"))
         {
-            // Play the sound effects if the object collided with the ground
-            SoundEffectsManager.instance.PlayRandomSoundEffecsClip(objectHitGroundSounds, transform, 1f);
+            // Play the sound effects if the ball object collided with the ground
+            SoundEffectsManager.instance.PlayRandomSoundEffecsClip(objectBallGroundSounds, transform, 1f);
         }
     }
 }

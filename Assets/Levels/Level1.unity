@@ -3700,6 +3700,7 @@ MonoBehaviour:
   health: {fileID: 2138214135}
   hitEnemySound: {fileID: 8300000, guid: 230f167baf71afb4f950fa786f32866e, type: 3}
   deathEnemySound: {fileID: 8300000, guid: 4b9eb78d58867664bbded0fd9c883fde, type: 3}
+  boundOffEnemySound: {fileID: 0}
   minHitSpeed: 6
 --- !u!1001 &673437521
 PrefabInstance:
@@ -7686,6 +7687,7 @@ MonoBehaviour:
   objectHitGroundSounds:
   - {fileID: 8300000, guid: 1010ee5e64dba2b4ea6e8e89bafc1569, type: 3}
   - {fileID: 8300000, guid: a4f525514958dcc4abd9574c25caade3, type: 3}
+  objectBallGroundSounds: []
 --- !u!1001 &1551416473
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7841,7 +7843,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1622432587}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
