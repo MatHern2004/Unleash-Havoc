@@ -1,6 +1,4 @@
 using UnityEngine; // for Unity functions
-using UnityEngine.Audio;
-using UnityEngine.InputSystem;
 
 /// Unity library for its functions
 
@@ -145,15 +143,12 @@ public class PlayerMovement : MonoBehaviour
     // Function to assist with flipping the player sprite
     private void Flip()
     {
-        Debug.Log("This is being called!");
         // Obtain the current scale for the user
         Vector3 currentScale = gameObject.transform.localScale;
         // Flip directions for the player
         currentScale.x *= -1;
         // Update the currentScale
         gameObject.transform.localScale = currentScale;
-        // Debug to figure out turning error
-        Debug.Log(gameObject.transform.localScale);
         // Flip the character boolean with every call
         facingRight = !facingRight;
     }   

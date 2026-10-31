@@ -1,5 +1,3 @@
-using System.Diagnostics;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine; // For Unity functions
 
 public class ScriptLogic : MonoBehaviour

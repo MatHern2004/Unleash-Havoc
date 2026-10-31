@@ -1,5 +1,3 @@
-using Unity.VisualScripting;
-using System.Collections.Generic;
 using UnityEngine; // For using Unity methods
 
 public class GrabObjects : MonoBehaviour

@@ -1211,7 +1211,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 699.1743, y: 185.48114}
+  m_AnchoredPosition: {x: 742, y: 145}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1143216790
@@ -1845,6 +1845,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca6ae6674da162348974bb4fff981ae4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  winMusic: {fileID: 0}
 --- !u!1 &1686105019
 GameObject:
   m_ObjectHideFlags: 0

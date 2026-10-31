@@ -1,7 +1,5 @@
 using System;
-using System.Threading.Tasks;
 using TMPro; // For TextMeshPro
-using Unity.VisualScripting;
 using UnityEngine; // For using Unity functions
 using UnityEngine.SceneManagement; // For Unity SceneManagement
 
