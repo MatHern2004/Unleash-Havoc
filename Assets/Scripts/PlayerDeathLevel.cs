@@ -7,13 +7,13 @@ public class PlayerDeathLevel : MonoBehaviour
     // Fall off noise
     [SerializeField] private AudioClip fallOffSound;
     // First Scene
-    private int firstLevel = 0;
+    private int firstLevel = 1;
     // Next Scene
-    private int secondLevel = 1;
+    private int secondLevel = 2;
     // Next Scene
-    private int thirdLevel = 2;
+    private int thirdLevel = 3;
     // Next Scene
-    private int winScreen = 3;
+    private int winScreen = 4;
     // String for obtaining the current Scene;
     private String scene;
 

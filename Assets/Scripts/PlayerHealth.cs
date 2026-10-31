@@ -17,27 +17,17 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private TextMeshProUGUI healthText;
     // Actual Invincibility Until
     private float invincibleUntil;
-    // Invinsibility alpha value
-    private SpriteRenderer flashing;
-    // private flash count
-    private int flashCount = 3;
     // EnemyMovement script for its Type
     EnemyMovement enemyName;
     // Beginning Scene
-    private int firstLevel = 0;
+    private int firstLevel = 1;
     // Next Scene
-    private int secondLevel = 1;
+    private int secondLevel = 2;
     // Next scene
-    private int thirdLevel = 2;
+    private int thirdLevel = 3;
     // To get the name of the scene
     private String scene;
     // color for changing alpha
-    private Color color;
-
-    private void Awake()
-    {
-        flashing = GetComponent<SpriteRenderer>();
-    }
     // Update is called once per frame
     void Update()
     {
@@ -64,7 +54,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
         
-
+    // When the player takes damage from an enemy
     public void TakeDamage(String enemyType)
     {
         // If the enemyType is basic and the invincibilityTime is less than the current time, allow for damage by 1

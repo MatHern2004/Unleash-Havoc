@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 public class EndOfLevelScript : MonoBehaviour
 {
     // Next Scene
-    private int secondLevel = 1;
+    private int secondLevel = 2;
     // Next Scene
-    private int thirdLevel = 2;
+    private int thirdLevel = 3;
     // Next Scene
-    private int winScreen = 3;
+    private int winScreen = 4;
 
 
     // Sound effect for beating the stage

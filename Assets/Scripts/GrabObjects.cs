@@ -117,17 +117,20 @@ public class GrabObjects : MonoBehaviour
                 grabbedObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
                 // Make sure the physics is being simulated properly
                 grabbedObject.GetComponent<Rigidbody2D>().simulated = true;
-                  // If the object itself is an enemy make em scream
-                 if (grabbedObject.CompareTag("Basic"))
-                 {
+                // If the object itself is an enemy make em scream
+                if (grabbedObject.CompareTag("Basic"))
+                {
                     // Sound effect for enemy being thrown
                     SoundEffectsManager.instance.PlaySoundEffecsClip(enemyThrowSound, transform , 1f);
-                    // To let them launch extremely far and fast
-                    grabbedObject.GetComponent<EnemyMovement>().speed = -100f;
+                    // Stop the enemy movement
+                    grabbedObject.GetComponent<EnemyMovement>().enabled = false;
                      // Apply an immediate force to the object
                     grabbedObject.GetComponent<Rigidbody2D>().AddForce(direction * throwForce*2, ForceMode2D.Impulse);
-                 }
-                grabbedObject.GetComponent<Rigidbody2D>().AddForce(direction * throwForce, ForceMode2D.Impulse);
+                }
+                else
+                {
+                    grabbedObject.GetComponent<Rigidbody2D>().AddForce(direction * throwForce, ForceMode2D.Impulse);
+                }
                 // Set parent to null 
                 grabbedObject.transform.SetParent(null); 
                 // grabbedObject is reset because it was thrown
