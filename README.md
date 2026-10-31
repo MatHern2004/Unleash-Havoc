@@ -35,6 +35,10 @@ basic enemies and throw them.
 
 I wasn't able to get a HUD showing the strength of the player nor an image of the object they were holding. Only the player's current health above their head is shown.
 
+I included a Menu Start Screen with a Win Screen as well, which wasn't originally mentioned in the one-pager.
+
+During development, I was planning to use the AStarSearch plugin, but decided against it due to it being overengineered for the purpose.
+
 For most of my art assets, it came from an asset pack by Kenny.nl to match the lab/space look I was intending. Other images such as the backgrounds were taken from
 Google.
 
