@@ -207,7 +207,6 @@ MonoBehaviour:
   invincibilityTime: 2
   enemyHitPlayerSound: {fileID: 8300000, guid: 6c66f019984306c4593e53bc79b01f5c, type: 3}
   healthText: {fileID: 8331504173635788368}
-  animator: {fileID: 4335911653613558714}
 --- !u!81 &4393719039575681610
 AudioListener:
   m_ObjectHideFlags: 0
@@ -381,7 +380,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6
+  orthographic size: 11
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

@@ -3854,6 +3854,7 @@ MonoBehaviour:
   hitEnemySound: {fileID: 8300000, guid: 230f167baf71afb4f950fa786f32866e, type: 3}
   deathEnemySound: {fileID: 8300000, guid: 4b9eb78d58867664bbded0fd9c883fde, type: 3}
   boundOffEnemySound: {fileID: 0}
+  animator: {fileID: 2138214134}
   minHitSpeed: 6
 --- !u!1001 &673437521
 PrefabInstance:
@@ -10179,6 +10180,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f09fbb083d335d42a888c6d2473beb1, type: 3}
+--- !u!95 &2138214134 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4335911653613558714, guid: 2f09fbb083d335d42a888c6d2473beb1, type: 3}
+  m_PrefabInstance: {fileID: 2138214133}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2138214135 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 374280558539777154, guid: 2f09fbb083d335d42a888c6d2473beb1, type: 3}
