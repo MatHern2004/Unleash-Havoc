@@ -78,7 +78,6 @@ public class PlayerHealth : MonoBehaviour
             SoundEffectsManager.instance.PlaySoundEffecsClip(enemyHitPlayerSound, transform, 1f);
             // Give them some invinsibility time
             invincibleUntil = invincibilityTime + Time.time;
-            
         }
           // If the enemyType is basic and the invincibilityTime is less than the current time, allow for damage by 1
         else if (enemyType == "Big" && Time.time > invincibleUntil)
@@ -92,6 +91,7 @@ public class PlayerHealth : MonoBehaviour
             // Give them some invinsibility time
             invincibleUntil = invincibilityTime + Time.time;
         }
+
     }
 
     // Function to modify the TextMeshProText

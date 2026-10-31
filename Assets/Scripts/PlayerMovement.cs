@@ -112,6 +112,15 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isRunning", false);
         }
 
+        if (!isGrounded)
+        {
+            animator.SetBool("isJumping", true);
+        }
+        else
+        {
+            animator.SetBool("isJumping", false);
+        }
+
         // Walking sound logic
         if (isGrounded && Mathf.Abs(inputHorizontal) > 0.01f)
         {

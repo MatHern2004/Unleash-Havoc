@@ -1,5 +1,6 @@
 using System;
 using UnityEngine; // For using Unity functions
+using System.Collections;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private AudioClip deathEnemySound;
     // bounceOffEnemySound;
     [SerializeField] private AudioClip boundOffEnemySound;
+    // Animation for hurt value
+    [SerializeField] private Animator animator;
     // Tag to determine the enemyType used for damage scaling
     public String enemyType { get; private set; }
     // Document which direction the enemy is facing
@@ -91,10 +94,23 @@ public class EnemyMovement : MonoBehaviour
         if (collidedWith.CompareTag("Player"))
         {
             // Take damage from the basic enemy
+            // Show the animation for it
+            // Play the animation
+            StartCoroutine(PlayerHurtAnimation());
             health.TakeDamage(enemyType);
         }
 
-        if (collidedWith.CompareTag("Box") && gameObject.CompareTag("Big"))
+        // Loop the player hurt animation for half a second
+        IEnumerator PlayerHurtAnimation()
+        {
+            animator.SetBool("isHurt", true);
+
+            yield return new WaitForSeconds(0.5f);
+
+            animator.SetBool("isHurt", false);
+        }
+
+        if ((collidedWith.CompareTag("Box") || collidedWith.CompareTag("Ball")) && gameObject.CompareTag("Big"))
         {
             objectBody = collidedWith.gameObject.GetComponent<Rigidbody2D>();
             objectBody.AddForce(-objectBody.linearVelocity * 3, ForceMode2D.Impulse);

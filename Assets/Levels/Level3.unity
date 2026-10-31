@@ -3143,6 +3143,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4269716634149783893, guid: e0e0ecf829f3844438ea00aa7892aee3, type: 3}
   m_PrefabInstance: {fileID: 620789173}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &637006325 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4335911653613558714, guid: 2f09fbb083d335d42a888c6d2473beb1, type: 3}
+  m_PrefabInstance: {fileID: 1464772425}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &642791674
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7240,6 +7245,7 @@ MonoBehaviour:
   hitEnemySound: {fileID: 8300000, guid: 230f167baf71afb4f950fa786f32866e, type: 3}
   deathEnemySound: {fileID: 8300000, guid: 10e7ac2dd77f075488a5d7bb0ea4b3d5, type: 3}
   boundOffEnemySound: {fileID: 8300000, guid: 6011cd6521749954ba6e4c6ed32b65a4, type: 3}
+  animator: {fileID: 637006325}
   minHitSpeed: 0
 --- !u!50 &1453390847
 Rigidbody2D:
@@ -8037,6 +8043,7 @@ MonoBehaviour:
   hitEnemySound: {fileID: 8300000, guid: 230f167baf71afb4f950fa786f32866e, type: 3}
   deathEnemySound: {fileID: 8300000, guid: 4b9eb78d58867664bbded0fd9c883fde, type: 3}
   boundOffEnemySound: {fileID: 0}
+  animator: {fileID: 637006325}
   minHitSpeed: 6
 --- !u!70 &1541063680
 CapsuleCollider2D:
@@ -8435,6 +8442,7 @@ MonoBehaviour:
   hitEnemySound: {fileID: 8300000, guid: 230f167baf71afb4f950fa786f32866e, type: 3}
   deathEnemySound: {fileID: 8300000, guid: 4b9eb78d58867664bbded0fd9c883fde, type: 3}
   boundOffEnemySound: {fileID: 0}
+  animator: {fileID: 637006325}
   minHitSpeed: 6
 --- !u!70 &1623165366
 CapsuleCollider2D:
@@ -13926,6 +13934,7 @@ MonoBehaviour:
   hitEnemySound: {fileID: 8300000, guid: 230f167baf71afb4f950fa786f32866e, type: 3}
   deathEnemySound: {fileID: 8300000, guid: 4b9eb78d58867664bbded0fd9c883fde, type: 3}
   boundOffEnemySound: {fileID: 0}
+  animator: {fileID: 637006325}
   minHitSpeed: 6
 --- !u!70 &1825456291
 CapsuleCollider2D:
@@ -15088,6 +15097,10 @@ PrefabInstance:
       propertyPath: health
       value: 
       objectReference: {fileID: 893107767}
+    - target: {fileID: 5162584629387088144, guid: 841672e3d82480f4e8e5d4c96d9aa5a2, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 637006325}
     - target: {fileID: 5162584629387088144, guid: 841672e3d82480f4e8e5d4c96d9aa5a2, type: 3}
       propertyPath: leftSide
       value: 
