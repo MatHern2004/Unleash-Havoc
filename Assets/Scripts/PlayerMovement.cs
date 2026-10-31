@@ -22,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private AudioClip jumpSound;
     // Sound for falling on the ground
     [SerializeField] private AudioClip fallToGroundSound;
+    // Animation field to add stuff
+    [SerializeField] private Animator animator;
     // private bool for changing the ground
     private bool isGrounded = true;
     // private bool to save the frame we were on the ground
@@ -68,6 +70,7 @@ public class PlayerMovement : MonoBehaviour
         body.linearVelocity = new Vector2(Input.GetAxis("Horizontal") * speed, body.linearVelocity.y);
 
 
+
         // Jumping (Up) and don't continue jumping unless they are on the ground
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
@@ -96,6 +99,18 @@ public class PlayerMovement : MonoBehaviour
         // IF I am facing the left and am facing hte right, then flip the player
         if (inputHorizontal < 0 && facingRight)
             Flip();
+
+        // Animation check
+        if (inputHorizontal != 0)
+        {
+            // Set the running animation to be true
+            animator.SetBool("isRunning", true);
+        }
+        else
+        {
+            // Else stop them from moving
+            animator.SetBool("isRunning", false);
+        }
 
         // Walking sound logic
         if (isGrounded && Mathf.Abs(inputHorizontal) > 0.01f)
