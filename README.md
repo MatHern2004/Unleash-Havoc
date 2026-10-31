@@ -19,10 +19,10 @@ A powerup is included that allows the player to grab enemies and throw them, but
 
 # Differences from One-Pager:
 
-**Controls** 
+# Controls
 All the controls I wanted within the one-pager were implemented.
 
-**Art Assets**
+# Art Assets
 I unfortunately wasn't able to get the throwing frames I wanted showing my character throwing the object explicitly.
 
 For the objects thrown, I wasn't able to create the tennis or car. I decided to change the brown box into a metallic one to better fit the theme.
@@ -38,7 +38,7 @@ I wasn't able to get a HUD showing the strength of the player nor an image of th
 For most of my art assets, it came from an asset pack by Kenny.nl to match the lab/space look I was intending. Other images such as the backgrounds were taken from
 Google.
 
-**Audio**
+# Audio Assets
 I was able to get the footsteps, powerup, throwing, enemy death, hit sounds, and more.
 
 I even added jumping sounds, multiple throwing and walking sounds that would shift randomly, ball bouncing, glass breaking, and edited version of my basic enemy death sound for the large enemy.
@@ -50,7 +50,7 @@ wasn't included.
 
 Instead of a victory song playing at the end of every level, I instead placed it in the very last level for when the player beats the game. 
 
-**Game Flow**
+# Game Flow
 The beginning storyline wasn't really translated well with my game, but I did include the beginning glass break encounter as desired.
 
 For the middle, the general jumping and taking out enemies is there, but some aspects were changed. The enemy that has protection isn't one that wears armor, but instead is impenetrable to normal attacks.
@@ -59,7 +59,7 @@ I didn't include the large gap idea but instead provided a section that required
 
 For the end, I wasn't able to have a door swing open. Instead, a golden archway is provided, and if a player touches it, they are transported to the next level.
 
-**Potential Challenges**
+# Potential Challenges
 Animation was indeed a challenge for the throwing as it was never complete. I couldn't create the throwing motion like I wanted.
 I was able to get basic movement for the player, that being a jump, run, idle, and hurt animations. Unfortunately, I couldn't provide animations to the enemies like I intended.
 
@@ -71,7 +71,7 @@ I was able to allow the user to drop the objects they didn't want. But I made th
 
 Game Feel wasn't as great as I wanted it to be. In my one-pager, I wanted the enemy to rotate and puff into smoke after death. Instead, I opted to launch the enemy quite far after the object hit them with a loud hit sound and a scream coming from them. 
 
-**AI Disclosure:**
+# AI Disclosure
 
 Claude AI assisted me in these portions.
 
